@@ -3,18 +3,18 @@ syntax = "proto3";
 package user;
 option go_package=".;user";
 
-message Request {
+message UserRequest {
   string username = 1;
   string password = 2;
   int64 mobile = 3;
 }
 
-message Response {
+message Data {
   int32 code = 1;
   string msg = 2;
   map<string,string> data = 3;
 }
 
 service User {
-  rpc Ping(Request) returns(Response);
+  rpc UserLogin(UserRequest) returns(Data);
 }
