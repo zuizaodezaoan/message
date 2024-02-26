@@ -3,18 +3,64 @@ syntax = "proto3";
 package user;
 option go_package=".;user";
 
-message UserRequest {
-  string username = 1;
-  string password = 2;
-  int64 mobile = 3;
+message UserInfo{
+  int64  id       = 1;
+  string mobile   = 2;
+  string password = 3;
+  string nickname = 4;
+  string birthday = 5;
+  int64  gender   = 6;
+  int64  role     = 7;
 }
 
-message Data {
-  int32 code = 1;
-  string msg = 2;
-  map<string,string> data = 3;
+message UserCreateRequest {
+  UserInfo info = 1;
+}
+
+message UserCreateResponse {
+  UserInfo info = 1;
+}
+
+message UserUpdateRequest{
+  UserInfo info = 1;
+}
+
+message UserUpdateResponse {
+  UserInfo info = 1;
+}
+
+message UserDeleteRequest{
+  UserInfo info = 1;
+}
+
+message UserDeleteResponse {
+  UserInfo info = 1;
+}
+
+message UserGetRequest{
+  int64 id = 1;
+}
+
+message UserGetResponse {
+  UserInfo info = 1;
+}
+
+message UsersGetRequest{
+  int64 Offset = 1;
+  int64 Limit  = 2;
+}
+
+message UsersGetResponse{
+  repeated UserInfo Infos = 1;
+  int64             Total = 2;
 }
 
 service User {
-  rpc UserLogin(UserRequest) returns(Data);
+  rpc UserCreate(UserCreateRequest) returns(UserCreateResponse);
+
+  rpc UserUpdate(UserCreateRequest) returns(UserCreateResponse);
+
+  rpc UserDelete(UserDeleteRequest) returns(UserDeleteResponse);
+
+  rpc UserGet(UserGetRequest) returns(UserGetResponse);
 }
