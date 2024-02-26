@@ -34,7 +34,6 @@ message UserDeleteRequest{
 }
 
 message UserDeleteResponse {
-  UserInfo info = 1;
 }
 
 message UserGetRequest{
@@ -55,6 +54,14 @@ message UsersGetResponse{
   int64             Total = 2;
 }
 
+message UserGetByUsernameRequest {
+  string Username = 10;
+}
+
+message UserGetByUsernameResponse {
+  UserInfo Info = 10;
+}
+
 service User {
   rpc UserCreate(UserCreateRequest) returns(UserCreateResponse);
 
@@ -63,4 +70,8 @@ service User {
   rpc UserDelete(UserDeleteRequest) returns(UserDeleteResponse);
 
   rpc UserGet(UserGetRequest) returns(UserGetResponse);
+
+  rpc UsersGet(UsersGetRequest) returns(UsersGetResponse);
+
+  rpc UserGetByUsername(UserGetByUsernameRequest) returns(UserGetByUsernameResponse);
 }
