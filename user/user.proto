@@ -55,11 +55,11 @@ message UsersGetResponse{
 }
 
 message UserGetByUsernameRequest {
-  string Username = 10;
+  string Username = 1;
 }
 
 message UserGetByUsernameResponse {
-  UserInfo Info = 10;
+  UserInfo Info = 1;
 }
 
 service User {
