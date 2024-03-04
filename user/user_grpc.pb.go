@@ -25,6 +25,7 @@ const (
 	User_UserGet_FullMethodName           = "/user.User/UserGet"
 	User_UsersGet_FullMethodName          = "/user.User/UsersGet"
 	User_UserGetByUsername_FullMethodName = "/user.User/UserGetByUsername"
+	User_UsersMobile_FullMethodName       = "/user.User/UsersMobile"
 )
 
 // UserClient is the client API for User service.
@@ -37,6 +38,7 @@ type UserClient interface {
 	UserGet(ctx context.Context, in *UserGetRequest, opts ...grpc.CallOption) (*UserGetResponse, error)
 	UsersGet(ctx context.Context, in *UsersGetRequest, opts ...grpc.CallOption) (*UsersGetResponse, error)
 	UserGetByUsername(ctx context.Context, in *UserGetByUsernameRequest, opts ...grpc.CallOption) (*UserGetByUsernameResponse, error)
+	UsersMobile(ctx context.Context, in *UserMobileRequest, opts ...grpc.CallOption) (*UserMobileResponse, error)
 }
 
 type userClient struct {
@@ -101,6 +103,15 @@ func (c *userClient) UserGetByUsername(ctx context.Context, in *UserGetByUsernam
 	return out, nil
 }
 
+func (c *userClient) UsersMobile(ctx context.Context, in *UserMobileRequest, opts ...grpc.CallOption) (*UserMobileResponse, error) {
+	out := new(UserMobileResponse)
+	err := c.cc.Invoke(ctx, User_UsersMobile_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // UserServer is the server API for User service.
 // All implementations must embed UnimplementedUserServer
 // for forward compatibility
@@ -111,6 +122,7 @@ type UserServer interface {
 	UserGet(context.Context, *UserGetRequest) (*UserGetResponse, error)
 	UsersGet(context.Context, *UsersGetRequest) (*UsersGetResponse, error)
 	UserGetByUsername(context.Context, *UserGetByUsernameRequest) (*UserGetByUsernameResponse, error)
+	UsersMobile(context.Context, *UserMobileRequest) (*UserMobileResponse, error)
 	mustEmbedUnimplementedUserServer()
 }
 
@@ -135,6 +147,9 @@ func (UnimplementedUserServer) UsersGet(context.Context, *UsersGetRequest) (*Use
 }
 func (UnimplementedUserServer) UserGetByUsername(context.Context, *UserGetByUsernameRequest) (*UserGetByUsernameResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UserGetByUsername not implemented")
+}
+func (UnimplementedUserServer) UsersMobile(context.Context, *UserMobileRequest) (*UserMobileResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UsersMobile not implemented")
 }
 func (UnimplementedUserServer) mustEmbedUnimplementedUserServer() {}
 
@@ -257,6 +272,24 @@ func _User_UserGetByUsername_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
+func _User_UsersMobile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UserMobileRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).UsersMobile(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_UsersMobile_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).UsersMobile(ctx, req.(*UserMobileRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // User_ServiceDesc is the grpc.ServiceDesc for User service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -287,6 +320,10 @@ var User_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UserGetByUsername",
 			Handler:    _User_UserGetByUsername_Handler,
+		},
+		{
+			MethodName: "UsersMobile",
+			Handler:    _User_UsersMobile_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
