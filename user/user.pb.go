@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.32.0
 // 	protoc        v3.21.11
-// source: user.proto
+// source: users.proto
 
 package user
 
@@ -914,47 +914,47 @@ func file_user_proto_rawDescGZIP() []byte {
 
 var file_user_proto_msgTypes = make([]protoimpl.MessageInfo, 16)
 var file_user_proto_goTypes = []interface{}{
-	(*UserInfo)(nil),                  // 0: user.UserInfo
-	(*UserCreateRequest)(nil),         // 1: user.UserCreateRequest
-	(*UserCreateResponse)(nil),        // 2: user.UserCreateResponse
-	(*UserUpdateRequest)(nil),         // 3: user.UserUpdateRequest
-	(*UserUpdateResponse)(nil),        // 4: user.UserUpdateResponse
-	(*UserDeleteRequest)(nil),         // 5: user.UserDeleteRequest
-	(*UserDeleteResponse)(nil),        // 6: user.UserDeleteResponse
-	(*UserGetRequest)(nil),            // 7: user.UserGetRequest
-	(*UserGetResponse)(nil),           // 8: user.UserGetResponse
-	(*UsersGetRequest)(nil),           // 9: user.UsersGetRequest
-	(*UsersGetResponse)(nil),          // 10: user.UsersGetResponse
-	(*UserGetByUsernameRequest)(nil),  // 11: user.UserGetByUsernameRequest
-	(*UserGetByUsernameResponse)(nil), // 12: user.UserGetByUsernameResponse
-	(*UserMobileRequest)(nil),         // 13: user.UserMobileRequest
-	(*UserMobileResponse)(nil),        // 14: user.UserMobileResponse
-	nil,                               // 15: user.UserMobileResponse.DataEntry
+	(*UserInfo)(nil),                  // 0: users.UserInfo
+	(*UserCreateRequest)(nil),         // 1: users.UserCreateRequest
+	(*UserCreateResponse)(nil),        // 2: users.UserCreateResponse
+	(*UserUpdateRequest)(nil),         // 3: users.UserUpdateRequest
+	(*UserUpdateResponse)(nil),        // 4: users.UserUpdateResponse
+	(*UserDeleteRequest)(nil),         // 5: users.UserDeleteRequest
+	(*UserDeleteResponse)(nil),        // 6: users.UserDeleteResponse
+	(*UserGetRequest)(nil),            // 7: users.UserGetRequest
+	(*UserGetResponse)(nil),           // 8: users.UserGetResponse
+	(*UsersGetRequest)(nil),           // 9: users.UsersGetRequest
+	(*UsersGetResponse)(nil),          // 10: users.UsersGetResponse
+	(*UserGetByUsernameRequest)(nil),  // 11: users.UserGetByUsernameRequest
+	(*UserGetByUsernameResponse)(nil), // 12: users.UserGetByUsernameResponse
+	(*UserMobileRequest)(nil),         // 13: users.UserMobileRequest
+	(*UserMobileResponse)(nil),        // 14: users.UserMobileResponse
+	nil,                               // 15: users.UserMobileResponse.DataEntry
 }
 var file_user_proto_depIdxs = []int32{
-	0,  // 0: user.UserCreateRequest.info:type_name -> user.UserInfo
-	0,  // 1: user.UserCreateResponse.info:type_name -> user.UserInfo
-	0,  // 2: user.UserUpdateRequest.info:type_name -> user.UserInfo
-	0,  // 3: user.UserUpdateResponse.info:type_name -> user.UserInfo
-	0,  // 4: user.UserDeleteRequest.info:type_name -> user.UserInfo
-	0,  // 5: user.UserGetResponse.info:type_name -> user.UserInfo
-	0,  // 6: user.UsersGetResponse.Infos:type_name -> user.UserInfo
-	0,  // 7: user.UserGetByUsernameResponse.Info:type_name -> user.UserInfo
-	15, // 8: user.UserMobileResponse.Data:type_name -> user.UserMobileResponse.DataEntry
-	1,  // 9: user.User.UserCreate:input_type -> user.UserCreateRequest
-	1,  // 10: user.User.UserUpdate:input_type -> user.UserCreateRequest
-	5,  // 11: user.User.UserDelete:input_type -> user.UserDeleteRequest
-	7,  // 12: user.User.UserGet:input_type -> user.UserGetRequest
-	9,  // 13: user.User.UsersGet:input_type -> user.UsersGetRequest
-	11, // 14: user.User.UserGetByUsername:input_type -> user.UserGetByUsernameRequest
-	13, // 15: user.User.UsersMobile:input_type -> user.UserMobileRequest
-	2,  // 16: user.User.UserCreate:output_type -> user.UserCreateResponse
-	2,  // 17: user.User.UserUpdate:output_type -> user.UserCreateResponse
-	6,  // 18: user.User.UserDelete:output_type -> user.UserDeleteResponse
-	8,  // 19: user.User.UserGet:output_type -> user.UserGetResponse
-	10, // 20: user.User.UsersGet:output_type -> user.UsersGetResponse
-	12, // 21: user.User.UserGetByUsername:output_type -> user.UserGetByUsernameResponse
-	14, // 22: user.User.UsersMobile:output_type -> user.UserMobileResponse
+	0,  // 0: users.UserCreateRequest.info:type_name -> users.UserInfo
+	0,  // 1: users.UserCreateResponse.info:type_name -> users.UserInfo
+	0,  // 2: users.UserUpdateRequest.info:type_name -> users.UserInfo
+	0,  // 3: users.UserUpdateResponse.info:type_name -> users.UserInfo
+	0,  // 4: users.UserDeleteRequest.info:type_name -> users.UserInfo
+	0,  // 5: users.UserGetResponse.info:type_name -> users.UserInfo
+	0,  // 6: users.UsersGetResponse.Infos:type_name -> users.UserInfo
+	0,  // 7: users.UserGetByUsernameResponse.Info:type_name -> users.UserInfo
+	15, // 8: users.UserMobileResponse.Data:type_name -> users.UserMobileResponse.DataEntry
+	1,  // 9: users.User.UserCreate:input_type -> users.UserCreateRequest
+	1,  // 10: users.User.UserUpdate:input_type -> users.UserCreateRequest
+	5,  // 11: users.User.UserDelete:input_type -> users.UserDeleteRequest
+	7,  // 12: users.User.UserGet:input_type -> users.UserGetRequest
+	9,  // 13: users.User.UsersGet:input_type -> users.UsersGetRequest
+	11, // 14: users.User.UserGetByUsername:input_type -> users.UserGetByUsernameRequest
+	13, // 15: users.User.UsersMobile:input_type -> users.UserMobileRequest
+	2,  // 16: users.User.UserCreate:output_type -> users.UserCreateResponse
+	2,  // 17: users.User.UserUpdate:output_type -> users.UserCreateResponse
+	6,  // 18: users.User.UserDelete:output_type -> users.UserDeleteResponse
+	8,  // 19: users.User.UserGet:output_type -> users.UserGetResponse
+	10, // 20: users.User.UsersGet:output_type -> users.UsersGetResponse
+	12, // 21: users.User.UserGetByUsername:output_type -> users.UserGetByUsernameResponse
+	14, // 22: users.User.UsersMobile:output_type -> users.UserMobileResponse
 	16, // [16:23] is the sub-list for method output_type
 	9,  // [9:16] is the sub-list for method input_type
 	9,  // [9:9] is the sub-list for extension type_name
