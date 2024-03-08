@@ -72,6 +72,18 @@ message UserMobileResponse {
   map<string,string> Data = 3;
 }
 
+message UserLoginRequest {
+ string Username = 1;
+ string Password = 2;
+ string Mobile = 3;
+}
+
+message UserLoginResponse {
+  int64 Code = 1;
+  string Msg = 2;
+  map<string,string> Data = 3;
+}
+
 
 service User {
   rpc UserCreate(UserCreateRequest) returns(UserCreateResponse);
@@ -87,4 +99,6 @@ service User {
   rpc UserGetByUsername(UserGetByUsernameRequest) returns(UserGetByUsernameResponse);
 
   rpc UsersMobile(UserMobileRequest) returns(UserMobileResponse);
+
+  rpc UserLogin(UserLoginRequest) returns(UserLoginResponse);
 }
