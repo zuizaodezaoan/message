@@ -27,6 +27,8 @@ const (
 	User_UserGetByUsername_FullMethodName = "/user.User/UserGetByUsername"
 	User_UsersMobile_FullMethodName       = "/user.User/UsersMobile"
 	User_UserLogin_FullMethodName         = "/user.User/UserLogin"
+	User_UserLoginMobile_FullMethodName   = "/user.User/UserLoginMobile"
+	User_LoginMobile_FullMethodName       = "/user.User/LoginMobile"
 )
 
 // UserClient is the client API for User service.
@@ -41,6 +43,8 @@ type UserClient interface {
 	UserGetByUsername(ctx context.Context, in *UserGetByUsernameRequest, opts ...grpc.CallOption) (*UserGetByUsernameResponse, error)
 	UsersMobile(ctx context.Context, in *UserMobileRequest, opts ...grpc.CallOption) (*UserMobileResponse, error)
 	UserLogin(ctx context.Context, in *UserLoginRequest, opts ...grpc.CallOption) (*UserLoginResponse, error)
+	UserLoginMobile(ctx context.Context, in *UserLoginMobileRequest, opts ...grpc.CallOption) (*UserLoginResponse, error)
+	LoginMobile(ctx context.Context, in *LoginMobileRequest, opts ...grpc.CallOption) (*UserLoginResponse, error)
 }
 
 type userClient struct {
@@ -123,6 +127,24 @@ func (c *userClient) UserLogin(ctx context.Context, in *UserLoginRequest, opts .
 	return out, nil
 }
 
+func (c *userClient) UserLoginMobile(ctx context.Context, in *UserLoginMobileRequest, opts ...grpc.CallOption) (*UserLoginResponse, error) {
+	out := new(UserLoginResponse)
+	err := c.cc.Invoke(ctx, User_UserLoginMobile_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) LoginMobile(ctx context.Context, in *LoginMobileRequest, opts ...grpc.CallOption) (*UserLoginResponse, error) {
+	out := new(UserLoginResponse)
+	err := c.cc.Invoke(ctx, User_LoginMobile_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // UserServer is the server API for User service.
 // All implementations must embed UnimplementedUserServer
 // for forward compatibility
@@ -135,6 +157,8 @@ type UserServer interface {
 	UserGetByUsername(context.Context, *UserGetByUsernameRequest) (*UserGetByUsernameResponse, error)
 	UsersMobile(context.Context, *UserMobileRequest) (*UserMobileResponse, error)
 	UserLogin(context.Context, *UserLoginRequest) (*UserLoginResponse, error)
+	UserLoginMobile(context.Context, *UserLoginMobileRequest) (*UserLoginResponse, error)
+	LoginMobile(context.Context, *LoginMobileRequest) (*UserLoginResponse, error)
 	mustEmbedUnimplementedUserServer()
 }
 
@@ -165,6 +189,12 @@ func (UnimplementedUserServer) UsersMobile(context.Context, *UserMobileRequest) 
 }
 func (UnimplementedUserServer) UserLogin(context.Context, *UserLoginRequest) (*UserLoginResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UserLogin not implemented")
+}
+func (UnimplementedUserServer) UserLoginMobile(context.Context, *UserLoginMobileRequest) (*UserLoginResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UserLoginMobile not implemented")
+}
+func (UnimplementedUserServer) LoginMobile(context.Context, *LoginMobileRequest) (*UserLoginResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method LoginMobile not implemented")
 }
 func (UnimplementedUserServer) mustEmbedUnimplementedUserServer() {}
 
@@ -323,6 +353,42 @@ func _User_UserLogin_Handler(srv interface{}, ctx context.Context, dec func(inte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _User_UserLoginMobile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UserLoginMobileRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).UserLoginMobile(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_UserLoginMobile_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).UserLoginMobile(ctx, req.(*UserLoginMobileRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_LoginMobile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LoginMobileRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).LoginMobile(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_LoginMobile_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).LoginMobile(ctx, req.(*LoginMobileRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // User_ServiceDesc is the grpc.ServiceDesc for User service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -361,6 +427,14 @@ var User_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UserLogin",
 			Handler:    _User_UserLogin_Handler,
+		},
+		{
+			MethodName: "UserLoginMobile",
+			Handler:    _User_UserLoginMobile_Handler,
+		},
+		{
+			MethodName: "LoginMobile",
+			Handler:    _User_LoginMobile_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
