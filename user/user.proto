@@ -86,6 +86,11 @@ message LoginMobileRequest {
   string Mobile = 1;
 }
 
+message UserLoginsRequest {
+  string Mobile = 1;
+  string Password = 2;
+}
+
 
 message UserLoginResponse {
   int64 Code = 1;
@@ -114,4 +119,6 @@ service User {
   rpc UserLoginMobile(UserLoginMobileRequest) returns(UserLoginResponse);
 
   rpc LoginMobile(LoginMobileRequest) returns(UserLoginResponse);
+
+  rpc LoginMobiles(UserLoginsRequest) returns(UserLoginResponse);
 }
