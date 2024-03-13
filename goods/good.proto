@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+package good;
+option go_package="./good";
+
+message SpecificationDetails{
+  int64  SpecificationsID =1;
+  string Value =2;
+}
+
+message CreateProductsRequest {
+  string ProductName = 1;
+  string ProductImages = 2;
+  int64  UserID = 3;
+}
+
+message CreateSpecificationsRequest {
+  int64 ProductsID = 1;
+  string Specification = 2;
+}
+
+
+message SpecificationDetailsRequest {
+  string    SpecificationsID = 1;
+  repeated  SpecificationDetails Value = 2;
+}
+
+message SkuRequest {
+  int64    SpecificationDetailsID = 1;
+  string   ProductPrice  = 2;
+  int64    ProductNumber = 3;
+  int64    Status = 4;
+}
+
+message Data {
+  int64 Code = 1;
+  string Mdg = 2;
+  map<string,string> Data = 3;
+}
+
+service Good {
+  //添加商品
+  rpc CreateProducts(CreateProductsRequest) returns(Data);
+
+  //添加规格
+  rpc CreateSpecifications(CreateSpecificationsRequest) returns(Data);
+
+  //添加规格详情
+  rpc SpecificationDetails(SpecificationDetailsRequest) returns(Data);
+
+  //添加sku
+  rpc Sku(SkuRequest) returns(Data);
+}
