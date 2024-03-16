@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.3.0
 // - protoc             v3.21.11
-// source: goods.proto
+// source: users.proto
 
 package users
 
@@ -19,17 +19,17 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	User_UserCreate_FullMethodName        = "/goods.User/UserCreate"
-	User_UserUpdate_FullMethodName        = "/goods.User/UserUpdate"
-	User_UserDelete_FullMethodName        = "/goods.User/UserDelete"
-	User_UserGet_FullMethodName           = "/goods.User/UserGet"
-	User_UsersGet_FullMethodName          = "/goods.User/UsersGet"
-	User_UserGetByUsername_FullMethodName = "/goods.User/UserGetByUsername"
-	User_UsersMobile_FullMethodName       = "/goods.User/UsersMobile"
-	User_UserLogin_FullMethodName         = "/goods.User/UserLogin"
-	User_UserLoginMobile_FullMethodName   = "/goods.User/UserLoginMobile"
-	User_LoginMobile_FullMethodName       = "/goods.User/LoginMobile"
-	User_LoginMobiles_FullMethodName      = "/goods.User/LoginMobiles"
+	User_UserCreate_FullMethodName        = "/users.User/UserCreate"
+	User_UserUpdate_FullMethodName        = "/users.User/UserUpdate"
+	User_UserDelete_FullMethodName        = "/users.User/UserDelete"
+	User_UserGet_FullMethodName           = "/users.User/UserGet"
+	User_UsersGet_FullMethodName          = "/users.User/UsersGet"
+	User_UserGetByUsername_FullMethodName = "/users.User/UserGetByUsername"
+	User_UsersMobile_FullMethodName       = "/users.User/UsersMobile"
+	User_UserLogin_FullMethodName         = "/users.User/UserLogin"
+	User_UserLoginMobile_FullMethodName   = "/users.User/UserLoginMobile"
+	User_LoginMobile_FullMethodName       = "/users.User/LoginMobile"
+	User_LoginMobiles_FullMethodName      = "/users.User/LoginMobiles"
 )
 
 // UserClient is the client API for User service.
@@ -426,7 +426,7 @@ func _User_LoginMobiles_Handler(srv interface{}, ctx context.Context, dec func(i
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var User_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "goods.User",
+	ServiceName: "users.User",
 	HandlerType: (*UserServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -475,5 +475,5 @@ var User_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "goods.proto",
+	Metadata: "users.proto",
 }
