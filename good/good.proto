@@ -49,22 +49,22 @@ message Specifications{
 }
 
 // 添加商品规格属性
-message CreateSpecificationReq{
+message CreateSpecificationRequest{
   int64      GoodsId =1;
   string     specificationName =2;
   repeated   SpecificationDetails  specificationDetails =3;
 }
 
-message CreateSpecificationRes{
+message CreateSpecificationResponse{
   Specifications specifications =1;
   repeated SpecificationDetails      specificationDetails =2;
 }
 
 
-message CreateGoodsInfosReq{
+message CreateGoodsInfosRequest{
   Specifications specifications =2; //商品规格属性值和sku
 }
-message CreateGoodsInfosRes{
+message CreateGoodsInfosResponse{
   ProductsInfo          productsInfo =1; // 商品信息
   Specifications specifications =2;//商品规格属性值和sku
 }
@@ -101,7 +101,7 @@ service Goods {
   rpc CreateProducts(CreateProductsRequest)returns(CreateGoodsResponse);
 
   // 一次性添加商品规格属性值
-  rpc CreateGoodsInfos(CreateGoodsInfosReq)returns(CreateGoodsInfosRes);
+  rpc CreateGoodsInfos(CreateGoodsInfosRequest)returns(CreateGoodsInfosResponse);
 
   // 查询商品信息sku
   rpc GetGoodsInfo(GetProductsRequest)returns(GetGoodsResponse);
