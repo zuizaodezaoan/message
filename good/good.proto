@@ -3,106 +3,104 @@ syntax = "proto3";
 package good;
 option go_package="./good";
 
-message ProductsInfo {
-  int64  id        =1;
-  string ProductName =2;
-  string Image     =3;
-  int64  userID    =4;
-  Status status    =5;
-}
+message GoodsInfo {
+  int64  id = 1;
+  string goodsName = 2;
+  Status status = 3;
+  string image = 4;
+  int64  userID = 5;
 
+}
 enum Status {
-  Default=0; // 未上架
-  Listing=1; // 上架
-  DElIST=2; // 下架
+  Default= 0; // 未上架
+  Listing= 1; // 上架
+  DElIST= 2; // 下架
 }
-
-message CreateProductsRequest {
-  ProductsInfo info=1;
+message CreateGoodsRequest {
+  GoodsInfo info= 1;
 }
 
 message CreateGoodsResponse {
-  ProductsInfo Info = 1;
-}
-
-// 商品规格属性
-message SpecificationDetails{
-  int64    id =1;
-  int64    SpecificationsID =2;
-  string   Value =3;
-  Sku      sku =4;
-}
-
-message Sku {
-  int64     id =1;
-  int64     SpecificationDetailsID =2;
-  string    ProductPrice =3;
-  int64     ProductNumber =4;
+  GoodsInfo Info = 1;
 }
 
 // 商品规格
-message Specifications{
-  int64     ID =1;
-  int64     ProductsID =2;
-  string    SpecificationName =3;
-  repeated  SpecificationDetails  specificationDetails =4;
+message GoodsSpecification{
+  int64     ID = 1;
+  int64     GoodsId = 2;
+  string    specificationName = 3;
+  repeated  AttributeList  attributeList = 4;
+}
+
+// 商品规格属性
+message AttributeList{
+  int64    id = 1;
+  int64    SpecificationID = 2;
+  string   Value = 3;
+  Sku    sku = 4;
+}
+message Sku {
+  int64     id = 1;
+  int64     AttributeListId = 2;
+  string    GoodsPrice = 3;
+  int64     Stock = 4;
 }
 
 // 添加商品规格属性
 message CreateSpecificationRequest{
-  int64      GoodsId =1;
-  string     specificationName =2;
-  repeated   SpecificationDetails  specificationDetails =3;
+  int64      GoodsId = 1;
+  string     specificationName = 2;
+  repeated   AttributeList  attributeList = 3;
+}
+message CreateSpecificationResponse{
+  GoodsSpecification goodsSpecification = 1;
+  repeated AttributeList      attributeList = 2;
 }
 
-message CreateSpecificationResponse{
-  Specifications specifications =1;
-  repeated SpecificationDetails      specificationDetails =2;
-}
+
+
 
 
 message CreateGoodsInfosRequest{
-  Specifications specifications =2; //商品规格属性值和sku
+  GoodsSpecification GoodsSpecification = 2; //商品规格属性值和sku
 }
 message CreateGoodsInfosResponse{
-  ProductsInfo          productsInfo =1; // 商品信息
-  Specifications specifications =2;//商品规格属性值和sku
+  GoodsInfo          GoodsInfo = 1; // 商品信息
+  GoodsSpecification GoodsSpecification = 2;//商品规格属性值和sku
 }
 
 
 // 商品规格
-message Specifications2{
-  int64     ID =1;
-  int64     ProductsID =2;
-  string    SpecificationName =3;
+message GoodsSpecification2{
+  int64     ID = 1;
+  int64     GoodsId = 2;
+  string    specificationName = 3;
 }
 // 商品规格属性
-message SpecificationDetails2{
-  int64    id =1;
-  int64    SpecificationsID =2;
-  string   Value =3;
+message AttributeList2{
+  int64    id = 1;
+  int64    SpecificationID = 2;
+  string   Value = 3;
 }
 
-message GetProductsRequest{
-  int64 ProductsId=1;
+message GetGoodsInfoRequest{
+  int64 GoodsId = 1;
 }
-
-
-message GetGoodsResponse{
-  ProductsInfo ProductsInfo =1;
-  repeated Specifications2 Specifications =2;
-  repeated  SpecificationDetails2 SpecificationDetails =3;
+message GetGoodsInfoResponse{
+  GoodsInfo GoodsInfo = 1;
+  repeated GoodsSpecification2 GoodsSpecification = 2;
+  repeated  AttributeList2 AttributeList =3;
   repeated Sku sku =4;
 }
 
 
 service Goods {
   // 添加商品信息
-  rpc CreateProducts(CreateProductsRequest)returns(CreateGoodsResponse);
+  rpc CreateGoods(CreateGoodsRequest)returns(CreateGoodsResponse);
 
   // 一次性添加商品规格属性值
   rpc CreateGoodsInfos(CreateGoodsInfosRequest)returns(CreateGoodsInfosResponse);
 
   // 查询商品信息sku
-  rpc GetGoodsInfo(GetProductsRequest)returns(GetGoodsResponse);
+  rpc GetGoodsInfo(GetGoodsInfoRequest)returns(GetGoodsInfoResponse);
 }
