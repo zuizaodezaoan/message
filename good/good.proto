@@ -87,6 +87,7 @@ message GetProductsRequest{
   int64 ProductsId=1;
 }
 
+
 message GetGoodsResponse{
   ProductsInfo ProductsInfo =1;
   repeated Specifications2 Specifications =2;
