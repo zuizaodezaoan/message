@@ -31,7 +31,7 @@ type GoodsClient interface {
 	// 添加商品信息
 	CreateProducts(ctx context.Context, in *CreateProductsRequest, opts ...grpc.CallOption) (*CreateGoodsResponse, error)
 	// 一次性添加商品规格属性值
-	CreateGoodsInfos(ctx context.Context, in *CreateGoodsInfosReq, opts ...grpc.CallOption) (*CreateGoodsInfosRes, error)
+	CreateGoodsInfos(ctx context.Context, in *CreateGoodsInfosRequest, opts ...grpc.CallOption) (*CreateGoodsInfosResponse, error)
 	// 查询商品信息sku
 	GetGoodsInfo(ctx context.Context, in *GetProductsRequest, opts ...grpc.CallOption) (*GetGoodsResponse, error)
 }
@@ -53,8 +53,8 @@ func (c *goodsClient) CreateProducts(ctx context.Context, in *CreateProductsRequ
 	return out, nil
 }
 
-func (c *goodsClient) CreateGoodsInfos(ctx context.Context, in *CreateGoodsInfosReq, opts ...grpc.CallOption) (*CreateGoodsInfosRes, error) {
-	out := new(CreateGoodsInfosRes)
+func (c *goodsClient) CreateGoodsInfos(ctx context.Context, in *CreateGoodsInfosRequest, opts ...grpc.CallOption) (*CreateGoodsInfosResponse, error) {
+	out := new(CreateGoodsInfosResponse)
 	err := c.cc.Invoke(ctx, Goods_CreateGoodsInfos_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -78,7 +78,7 @@ type GoodsServer interface {
 	// 添加商品信息
 	CreateProducts(context.Context, *CreateProductsRequest) (*CreateGoodsResponse, error)
 	// 一次性添加商品规格属性值
-	CreateGoodsInfos(context.Context, *CreateGoodsInfosReq) (*CreateGoodsInfosRes, error)
+	CreateGoodsInfos(context.Context, *CreateGoodsInfosRequest) (*CreateGoodsInfosResponse, error)
 	// 查询商品信息sku
 	GetGoodsInfo(context.Context, *GetProductsRequest) (*GetGoodsResponse, error)
 	mustEmbedUnimplementedGoodsServer()
@@ -91,7 +91,7 @@ type UnimplementedGoodsServer struct {
 func (UnimplementedGoodsServer) CreateProducts(context.Context, *CreateProductsRequest) (*CreateGoodsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateProducts not implemented")
 }
-func (UnimplementedGoodsServer) CreateGoodsInfos(context.Context, *CreateGoodsInfosReq) (*CreateGoodsInfosRes, error) {
+func (UnimplementedGoodsServer) CreateGoodsInfos(context.Context, *CreateGoodsInfosRequest) (*CreateGoodsInfosResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateGoodsInfos not implemented")
 }
 func (UnimplementedGoodsServer) GetGoodsInfo(context.Context, *GetProductsRequest) (*GetGoodsResponse, error) {
@@ -129,7 +129,7 @@ func _Goods_CreateProducts_Handler(srv interface{}, ctx context.Context, dec fun
 }
 
 func _Goods_CreateGoodsInfos_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateGoodsInfosReq)
+	in := new(CreateGoodsInfosRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -141,7 +141,7 @@ func _Goods_CreateGoodsInfos_Handler(srv interface{}, ctx context.Context, dec f
 		FullMethod: Goods_CreateGoodsInfos_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GoodsServer).CreateGoodsInfos(ctx, req.(*CreateGoodsInfosReq))
+		return srv.(GoodsServer).CreateGoodsInfos(ctx, req.(*CreateGoodsInfosRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
